@@ -8,7 +8,22 @@
       "Bash(git config:*)",
       "Bash(git remote add:*)",
       "Bash(git branch:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(convert:*)",
+      "Bash(pip3 list:*)",
+      "Bash(pip3 install:*)",
+      "Bash(apt-get update:*)",
+      "Bash(apt-get install:*)",
+      "Bash(identify:*)",
+      "Bash(for f in sub-설립목적.psd sub-센터현황.psd sub-소개-인사말.psd sub-요금안내.psd sub-환승안내.psd sub-버스운행시간.psd sub-버스회사소개.psd sub-정류소위치안내.psd sub-공지사항.psd sub-설문조사.psd)",
+      "Bash(do convert \"$f[0]\" \"$f%.psd_preview.png\")",
+      "Bash(echo:*)",
+      "Bash(done)",
+      "Bash(for f in 8-*.psd map-*.psd)",
+      "Bash(for i in 5 10 15 20 30 40 50 60 70 80 90 100)",
+      "Bash(do convert:*)",
+      "Bash(find:*)",
+      "Bash(git log:*)"
     ]
   }
 }

@@ -207,6 +207,37 @@
         padding: 0.4rem 0.75rem;
         font-size: 0.8125rem;
       }
+      .status-table {
+        table-layout: fixed;
+        width: 100% !important;
+        font-size: 0.65rem !important;
+      }
+      .status-table th,
+      .status-table td {
+        padding: 0.25rem 0.15rem !important;
+        font-size: 0.65rem !important;
+        word-break: keep-all !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+      }
+      .fee-table-wrapper {
+        overflow-x: visible !important;
+      }
+      .fee-table {
+        table-layout: fixed;
+        width: 100% !important;
+        font-size: 0.6rem !important;
+      }
+      .fee-table th,
+      .fee-table td {
+        padding: 0.25rem 0.1rem !important;
+        font-size: 0.6rem !important;
+        word-break: keep-all !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+      }
     }
   </style>
 </head>
@@ -578,7 +609,16 @@
           <div class="parking-layout">
             <div class="parking-map-container">
               <div class="parking-map-header">옥곡공영주차장</div>
-              <div class="parking-map" style="display: flex; align-items: center; justify-content: center; padding: 2rem;">
+              <div class="parking-map" style="position: relative; display: flex; align-items: center; justify-content: center; padding: 2rem;">
+                <!-- 구역 버튼 -->
+                <div style="position: absolute; top: 10px; right: 10px; display: flex; gap: 4px;">
+                  <button class="zone-btn active" data-zone="all" style="padding: 5px 10px; font-size: 11px; background-color: #1e88e5; color: white; border: 1px solid #1e88e5; border-radius: 4px; cursor: pointer;">전체</button>
+                  <button class="zone-btn" data-zone="a" style="padding: 5px 10px; font-size: 11px; background-color: white; color: #374151; border: 1px solid #d1d5db; border-radius: 4px; cursor: pointer;">A구역</button>
+                  <button class="zone-btn" data-zone="b" style="padding: 5px 10px; font-size: 11px; background-color: white; color: #374151; border: 1px solid #d1d5db; border-radius: 4px; cursor: pointer;">B구역</button>
+                  <button class="zone-btn" data-zone="c" style="padding: 5px 10px; font-size: 11px; background-color: white; color: #374151; border: 1px solid #d1d5db; border-radius: 4px; cursor: pointer;">C구역</button>
+                  <button class="zone-btn" data-zone="d" style="padding: 5px 10px; font-size: 11px; background-color: white; color: #374151; border: 1px solid #d1d5db; border-radius: 4px; cursor: pointer;">D구역</button>
+                  <button class="zone-btn" data-zone="e" style="padding: 5px 10px; font-size: 11px; background-color: white; color: #374151; border: 1px solid #d1d5db; border-radius: 4px; cursor: pointer;">E구역</button>
+                </div>
                 <!-- 주차 현황 표시기 -->
                 <div style="width: 200px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                   <div style="background-color: #1e88e5; color: white; padding: 0.625rem 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
@@ -769,9 +809,9 @@
         <div class="footer-top-content">
           <span class="footer-title">경산시교통정보센터</span>
           <div class="footer-links">
-            <a href="#">개인정보보호방침</a>
+            <a href="../support/privacy.html">개인정보보호방침</a>
             <span class="footer-divider">|</span>
-            <a href="#">찾아오시는길</a>
+            <a href="../center/location.html">찾아오시는길</a>
           </div>
         </div>
       </div>

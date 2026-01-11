@@ -115,6 +115,8 @@
       background-color: #00205d;
       overflow-y: auto;
       padding-bottom: 4rem;
+      display: flex;
+      flex-direction: column;
     }
 
     .search-panel-header {
@@ -176,6 +178,7 @@
     /* Sub Tabs */
     .sub-tabs-container {
       padding: 12px;
+      padding-bottom: 3px;
       background-color: #d6e9f8;
     }
 
@@ -241,6 +244,86 @@
       border-color: #00205d;
     }
 
+    .search-select-row {
+      display: flex;
+      flex: 1;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .search-select-sm {
+      flex: 1;
+      padding: 8px 8px;
+      font-size: 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      background-color: white;
+      cursor: pointer;
+      height: 36px;
+    }
+
+    .search-select-sm:focus {
+      border-color: #00205d;
+      outline: none;
+    }
+
+    .search-select-btn {
+      padding: 8px 10px;
+      background-color: white;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      color: #00205d;
+      cursor: pointer;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .search-input-wrapper input {
+      height: 36px;
+      box-sizing: border-box;
+    }
+
+    .search-select-btn:hover {
+      background-color: #00205d;
+      color: white;
+    }
+
+    /* Search Help */
+    .search-help {
+      margin-top: 8px;
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .search-help-badge {
+      display: inline-block;
+      background-color: #00205d;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      margin-right: 4px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .search-help-badge:hover {
+      background-color: #003080;
+    }
+
+    .search-help-text {
+      color: #6b7280;
+    }
+
+    .search-help-desc {
+      margin-top: 4px;
+      line-height: 1.4;
+      color: #4b5563;
+    }
+
     .search-input-row {
       display: flex;
       align-items: center;
@@ -281,7 +364,8 @@
     /* Route List Section */
     .section-header {
       background-color: rgba(0, 32, 93, 1);
-      padding: 8px 16px;
+      padding: 10px 16px;
+      padding-bottom: 0;
     }
 
     .section-header span {
@@ -324,6 +408,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    .route-table-row > div:first-child {
+      justify-content: flex-start;
+      gap: 4px;
+      white-space: nowrap;
     }
 
     .route-badge {
@@ -1179,6 +1269,159 @@
     .hidden {
       display: none !important;
     }
+
+    /* Map Legend */
+    .map-legend {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      padding: 10px 12px;
+      font-size: 11px;
+      z-index: 10;
+    }
+
+    .map-legend-section {
+      margin-bottom: 8px;
+    }
+
+    .map-legend-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .map-legend-title {
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 6px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .map-legend-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .map-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      color: #374151;
+    }
+
+    .legend-line {
+      width: 20px;
+      height: 4px;
+      border-radius: 2px;
+    }
+
+    .legend-line.forward {
+      background-color: #2563eb;
+    }
+
+    .legend-line.reverse {
+      background-color: #dc2626;
+    }
+
+    .legend-circle {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .legend-circle.smooth {
+      background-color: #22c55e;
+    }
+
+    .legend-circle.slow {
+      background-color: #eab308;
+    }
+
+    .legend-circle.congested {
+      background-color: #ef4444;
+    }
+
+    .legend-circle.nodata {
+      background-color: #9ca3af;
+    }
+
+    .legend-stop-icon {
+      width: 14px;
+      height: 14px;
+      background-color: #00205d;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .legend-stop-icon svg {
+      width: 8px;
+      height: 8px;
+      color: white;
+    }
+
+    .legend-refresh-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      background-color: #f3f4f6;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      font-size: 10px;
+      color: #374151;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .legend-refresh-btn:hover {
+      background-color: #e5e7eb;
+    }
+
+    .legend-refresh-btn svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .legend-speed {
+      font-size: 9px;
+      color: #6b7280;
+    }
+
+    @media (max-width: 767px) {
+      .map-legend {
+        bottom: 5px;
+        right: 5px;
+        padding: 8px 10px;
+        max-width: calc(100% - 20px);
+      }
+
+      .map-legend-items {
+        gap: 6px;
+      }
+
+      .map-legend-item {
+        font-size: 9px;
+      }
+
+      .legend-line {
+        width: 16px;
+        height: 3px;
+      }
+
+      .legend-circle {
+        width: 10px;
+        height: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1375,6 +1618,51 @@
         </div>
         <button class="bus-marker-close">x</button>
       </div>
+      <!-- Map Legend -->
+      <div class="map-legend">
+        <div class="map-legend-section">
+          <div class="map-legend-title">버스노선 방향 & 정류소 안내</div>
+          <div class="map-legend-items">
+            <div class="map-legend-item">
+              <span class="legend-line forward"></span>
+              <span>정방향</span>
+            </div>
+            <div class="map-legend-item">
+              <span class="legend-line reverse"></span>
+              <span>역방향</span>
+            </div>
+            <div class="map-legend-item">
+              <span class="legend-stop-icon">
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                </svg>
+              </span>
+              <span>정류소 안내기 설치 정류소</span>
+            </div>
+          </div>
+        </div>
+        <div class="map-legend-section">
+          <div class="map-legend-title">실시간 소통정보</div>
+          <div class="map-legend-items">
+            <div class="map-legend-item">
+              <span class="legend-circle smooth"></span>
+              <span>원활 <span class="legend-speed">(25km/h~)</span></span>
+            </div>
+            <div class="map-legend-item">
+              <span class="legend-circle slow"></span>
+              <span>지체 <span class="legend-speed">(15~25km/h)</span></span>
+            </div>
+            <div class="map-legend-item">
+              <span class="legend-circle congested"></span>
+              <span>정체 <span class="legend-speed">(0~15km/h)</span></span>
+            </div>
+            <div class="map-legend-item">
+              <span class="legend-circle nodata"></span>
+              <span>정보없음</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Mobile Bottom Menu Tabs -->
@@ -1452,15 +1740,98 @@
               <button class="filter-btn" data-filter="정류소">정류소</button>
               <button class="filter-btn" data-filter="지역">지역</button>
             </div>
-            <div class="search-input-row">
-              <span class="search-label">노 선</span>
-              <div class="search-input-wrapper">
-                <input type="text" value="309" placeholder="노선번호 입력">
-                <button>
-                  <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                  </svg>
-                </button>
+            <!-- 노선번호 입력 -->
+            <div class="filter-content active" data-filter-content="노선번호">
+              <div class="search-input-row">
+                <span class="search-label">노 선</span>
+                <div class="search-input-wrapper">
+                  <input type="text" value="309" placeholder="노선번호 입력">
+                  <button>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="search-help">
+                <button class="search-help-badge">도움말 안내</button>
+                <span class="search-help-text">자세한 사용법은 '도움말 안내' 버튼을 클릭하세요.</span>
+                <p class="search-help-desc" style="display: none;">노선번호는 버스노선 번호를 검색하여 입력하신 노선에 대한 목록과 상세정보를 안내합니다.</p>
+              </div>
+            </div>
+            <!-- 유형 선택 -->
+            <div class="filter-content" data-filter-content="유형" style="display: none;">
+              <div class="search-input-row">
+                <span class="search-label">유 형</span>
+                <div class="search-select-row">
+                  <select class="search-select-sm">
+                    <option value="">::버스구분::</option>
+                    <option value="city">시내버스</option>
+                    <option value="town">마을버스</option>
+                  </select>
+                  <select class="search-select-sm">
+                    <option value="">::노선번호::</option>
+                    <option value="100">100</option>
+                    <option value="309">309</option>
+                    <option value="경산2">경산2</option>
+                  </select>
+                  <button class="search-select-btn">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="search-help">
+                <button class="search-help-badge">도움말 안내</button>
+                <span class="search-help-text">자세한 사용법은 '도움말 안내' 버튼을 클릭하세요.</span>
+                <p class="search-help-desc" style="display: none;">유형은 버스구분과 노선번호를 선택하여 해당 노선의 상세정보를 안내합니다.</p>
+              </div>
+            </div>
+            <!-- 정류소 입력 -->
+            <div class="filter-content" data-filter-content="정류소" style="display: none;">
+              <div class="search-input-row">
+                <span class="search-label">정류소</span>
+                <div class="search-input-wrapper">
+                  <input type="text" placeholder="정류소명 입력">
+                  <button>
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="search-help">
+                <button class="search-help-badge">도움말 안내</button>
+                <span class="search-help-text">자세한 사용법은 '도움말 안내' 버튼을 클릭하세요.</span>
+                <p class="search-help-desc" style="display: none;">정류소는 정류소명을 검색하여 해당 정류소의 위치와 경유 노선정보를 안내합니다.</p>
+              </div>
+            </div>
+            <!-- 지역 선택 -->
+            <div class="filter-content" data-filter-content="지역" style="display: none;">
+              <div class="search-input-row">
+                <span class="search-label">지 역</span>
+                <div class="search-select-row">
+                  <select class="search-select-sm">
+                    <option value="">::동 선택::</option>
+                    <option value="중앙동">중앙동</option>
+                    <option value="동부동">동부동</option>
+                    <option value="서부동">서부동</option>
+                  </select>
+                  <select class="search-select-sm">
+                    <option value="">::리 선택::</option>
+                  </select>
+                  <button class="search-select-btn">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="search-help">
+                <button class="search-help-badge">도움말 안내</button>
+                <span class="search-help-text">자세한 사용법은 '도움말 안내' 버튼을 클릭하세요.</span>
+                <p class="search-help-desc" style="display: none;">지역은 동/리를 선택하여 해당 지역의 정류소와 노선정보를 안내합니다.</p>
               </div>
             </div>
           </div>
@@ -1931,350 +2302,6 @@
         </div>
       </div>
 
-      <!-- Traffic Content -->
-      <div id="traffic-content" class="bottom-tab-content hidden">
-        <div class="other-content">
-          <h2>
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m-4 0H1m4 0h4m4 0a2 2 0 104 0m-4 0a2 2 0 114 0m-4 0h4m4 0h4M5 7h14l-1.5 4.5H6.5L5 7z"/>
-            </svg>
-            실시간 도로소통현황
-          </h2>
-          <div class="traffic-table">
-            <div class="traffic-table-header">
-              <div>도로명</div>
-              <div>구간</div>
-              <div>상태</div>
-              <div>속도</div>
-            </div>
-            <div class="traffic-table-row">
-              <div style="font-weight: 500;">경산로</div>
-              <div style="color: #4b5563;">경산역 ~ 영남대</div>
-              <div class="traffic-status smooth">원활</div>
-              <div>45km/h</div>
-            </div>
-            <div class="traffic-table-row">
-              <div style="font-weight: 500;">중앙로</div>
-              <div style="color: #4b5563;">경산시청 ~ 중앙광장</div>
-              <div class="traffic-status slow">서행</div>
-              <div>25km/h</div>
-            </div>
-            <div class="traffic-table-row">
-              <div style="font-weight: 500;">대학로</div>
-              <div style="color: #4b5563;">영남대 ~ 대구한의대</div>
-              <div class="traffic-status smooth">원활</div>
-              <div>50km/h</div>
-            </div>
-            <div class="traffic-table-row">
-              <div style="font-weight: 500;">하양로</div>
-              <div style="color: #4b5563;">하양읍 ~ 경산IC</div>
-              <div class="traffic-status congested">정체</div>
-              <div>15km/h</div>
-            </div>
-            <div class="traffic-table-row">
-              <div style="font-weight: 500;">압량로</div>
-              <div style="color: #4b5563;">압량면 ~ 진량읍</div>
-              <div class="traffic-status smooth">원활</div>
-              <div>55km/h</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CCTV Content -->
-      <div id="cctv-content" class="bottom-tab-content hidden">
-        <div class="other-content">
-          <h2>
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-            </svg>
-            CCTV 위치 목록
-          </h2>
-          <div class="cctv-list">
-            <button class="cctv-item">
-              <div class="cctv-item-left">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                </svg>
-                <span>경산네거리</span>
-              </div>
-              <div class="cctv-item-right">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
-              </div>
-            </button>
-            <button class="cctv-item">
-              <div class="cctv-item-left">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                </svg>
-                <span>경산오거리</span>
-              </div>
-              <div class="cctv-item-right">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
-              </div>
-            </button>
-            <button class="cctv-item">
-              <div class="cctv-item-left">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                </svg>
-                <span>벽천교차로</span>
-              </div>
-              <div class="cctv-item-right">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
-              </div>
-            </button>
-            <button class="cctv-item">
-              <div class="cctv-item-left">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                </svg>
-                <span>중산삼거리</span>
-              </div>
-              <div class="cctv-item-right">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
-              </div>
-            </button>
-            <button class="cctv-item">
-              <div class="cctv-item-left">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                </svg>
-                <span>영대오거리</span>
-              </div>
-              <div class="cctv-item-right">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
-              </div>
-            </button>
-            <button class="cctv-item">
-              <div class="cctv-item-left">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                </svg>
-                <span>압량네거리</span>
-              </div>
-              <div class="cctv-item-right">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
-              </div>
-            </button>
-            <button class="cctv-item">
-              <div class="cctv-item-left">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                </svg>
-                <span>중산지구삼거리</span>
-              </div>
-              <div class="cctv-item-right">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
-              </div>
-            </button>
-            <button class="cctv-item">
-              <div class="cctv-item-left">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                </svg>
-                <span>역전네거리</span>
-              </div>
-              <div class="cctv-item-right">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
-              </div>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- VMS Content -->
-      <div id="vms-content" class="bottom-tab-content hidden">
-        <div class="other-content">
-          <h2>
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <rect x="2" y="3" width="20" height="14" rx="2" stroke-width="2"/>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 21h8m-4-4v4"/>
-            </svg>
-            전광표지(VMS) 정보
-          </h2>
-          <div class="vms-list">
-            <div class="vms-item">
-              <div class="vms-item-header">
-                <span>VMS-001</span>
-                <span class="vms-status normal">정상</span>
-              </div>
-              <div class="vms-location">경산네거리</div>
-              <div class="vms-message">전방 공사중 서행하세요</div>
-            </div>
-            <div class="vms-item">
-              <div class="vms-item-header">
-                <span>VMS-002</span>
-                <span class="vms-status normal">정상</span>
-              </div>
-              <div class="vms-location">영남대입구</div>
-              <div class="vms-message">졸업식 교통혼잡 예상</div>
-            </div>
-            <div class="vms-item">
-              <div class="vms-item-header">
-                <span>VMS-003</span>
-                <span class="vms-status normal">정상</span>
-              </div>
-              <div class="vms-location">경산IC</div>
-              <div class="vms-message">안전운전 하세요</div>
-            </div>
-            <div class="vms-item">
-              <div class="vms-item-header">
-                <span>VMS-004</span>
-                <span class="vms-status checking">점검중</span>
-              </div>
-              <div class="vms-location">하양교차로</div>
-              <div class="vms-message">우회도로 이용바람</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Parking Content -->
-      <div id="parking-content" class="bottom-tab-content hidden">
-        <div class="other-content">
-          <h2>
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m-4 0H1m4 0h4m4 0a2 2 0 104 0m-4 0a2 2 0 114 0m-4 0h4m4 0h4M5 7h14l-1.5 4.5H6.5L5 7z"/>
-            </svg>
-            공영주차장 현황
-          </h2>
-          <div class="parking-list">
-            <div class="parking-item">
-              <div class="parking-item-header">
-                <span>경산시청 주차장</span>
-                <span>무료</span>
-              </div>
-              <div class="parking-bar-container">
-                <div class="parking-bar">
-                  <div class="parking-bar-fill high" style="width: 22.5%;"></div>
-                </div>
-                <span class="parking-count high">45/200</span>
-              </div>
-            </div>
-            <div class="parking-item">
-              <div class="parking-item-header">
-                <span>경산역 공영주차장</span>
-                <span>최초 30분 무료</span>
-              </div>
-              <div class="parking-bar-container">
-                <div class="parking-bar">
-                  <div class="parking-bar-fill medium" style="width: 8%;"></div>
-                </div>
-                <span class="parking-count medium">12/150</span>
-              </div>
-            </div>
-            <div class="parking-item">
-              <div class="parking-item-header">
-                <span>중앙시장 주차장</span>
-                <span>시간당 1,000원</span>
-              </div>
-              <div class="parking-bar-container">
-                <div class="parking-bar">
-                  <div class="parking-bar-fill low" style="width: 0%;"></div>
-                </div>
-                <span class="parking-count low">0/100</span>
-              </div>
-            </div>
-            <div class="parking-item">
-              <div class="parking-item-header">
-                <span>영남대역 주차장</span>
-                <span>최초 1시간 무료</span>
-              </div>
-              <div class="parking-bar-container">
-                <div class="parking-bar">
-                  <div class="parking-bar-fill high" style="width: 37.2%;"></div>
-                </div>
-                <span class="parking-count high">67/180</span>
-              </div>
-            </div>
-            <div class="parking-item">
-              <div class="parking-item-header">
-                <span>하양읍 공영주차장</span>
-                <span>무료</span>
-              </div>
-              <div class="parking-bar-container">
-                <div class="parking-bar">
-                  <div class="parking-bar-fill high" style="width: 43.75%;"></div>
-                </div>
-                <span class="parking-count high">35/80</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Incident Content -->
-      <div id="incident-content" class="bottom-tab-content hidden">
-        <div class="other-content">
-          <h2>
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-            </svg>
-            돌발/통제 정보
-          </h2>
-          <div class="incident-list">
-            <div class="incident-item">
-              <div class="incident-item-header">
-                <span class="incident-type construction">공사</span>
-                <span class="incident-status ongoing">진행중</span>
-              </div>
-              <div class="incident-location">경산로 245</div>
-              <div class="incident-description">도로 보수공사</div>
-              <div class="incident-period">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                2025.01.02 ~ 01.10
-              </div>
-            </div>
-            <div class="incident-item">
-              <div class="incident-item-header">
-                <span class="incident-type event">행사</span>
-                <span class="incident-status ongoing">진행중</span>
-              </div>
-              <div class="incident-location">중앙광장</div>
-              <div class="incident-description">신년 행사로 인한 통제</div>
-              <div class="incident-period">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                2025.01.02 09:00~18:00
-              </div>
-            </div>
-            <div class="incident-item">
-              <div class="incident-item-header">
-                <span class="incident-type accident">사고</span>
-                <span class="incident-status processing">처리중</span>
-              </div>
-              <div class="incident-location">하양로 112</div>
-              <div class="incident-description">교통사고 처리중</div>
-              <div class="incident-period">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                2025.01.02 14:30~
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <!-- Desktop Map -->
@@ -2312,6 +2339,51 @@
           <svg width="16" height="16" fill="none" stroke="white" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
           </svg>
+        </div>
+      </div>
+      <!-- Map Legend -->
+      <div class="map-legend">
+        <div class="map-legend-section">
+          <div class="map-legend-title">버스노선 방향 & 정류소 안내</div>
+          <div class="map-legend-items">
+            <div class="map-legend-item">
+              <span class="legend-line forward"></span>
+              <span>정방향</span>
+            </div>
+            <div class="map-legend-item">
+              <span class="legend-line reverse"></span>
+              <span>역방향</span>
+            </div>
+            <div class="map-legend-item">
+              <span class="legend-stop-icon">
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                </svg>
+              </span>
+              <span>정류소 안내기 설치 정류소</span>
+            </div>
+          </div>
+        </div>
+        <div class="map-legend-section">
+          <div class="map-legend-title">실시간 소통정보</div>
+          <div class="map-legend-items">
+            <div class="map-legend-item">
+              <span class="legend-circle smooth"></span>
+              <span>원활 <span class="legend-speed">(25km/h~)</span></span>
+            </div>
+            <div class="map-legend-item">
+              <span class="legend-circle slow"></span>
+              <span>지체 <span class="legend-speed">(15~25km/h)</span></span>
+            </div>
+            <div class="map-legend-item">
+              <span class="legend-circle congested"></span>
+              <span>정체 <span class="legend-speed">(0~15km/h)</span></span>
+            </div>
+            <div class="map-legend-item">
+              <span class="legend-circle nodata"></span>
+              <span>정보없음</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2367,9 +2439,9 @@
         <div class="footer-top-content">
           <span class="footer-title">경산시교통정보센터</span>
           <div class="footer-links">
-            <a href="#">개인정보보호방침</a>
+            <a href="../support/privacy.html">개인정보보호방침</a>
             <span class="footer-divider">|</span>
-            <a href="#">찾아오시는길</a>
+            <a href="../center/location.html">찾아오시는길</a>
           </div>
         </div>
       </div>
@@ -2403,6 +2475,7 @@
     // Bottom Menu Tab Switching
     const bottomMenuTabs = document.querySelectorAll('.bottom-menu-tab, .bottom-menu-desktop-tab');
     const bottomTabContents = document.querySelectorAll('.bottom-tab-content');
+    const realtimeBusContent = document.getElementById('realtime-bus-content');
 
     bottomMenuTabs.forEach(tab => {
       tab.addEventListener('click', function() {
@@ -2414,11 +2487,8 @@
         // Add active class to clicked tab (both mobile and desktop)
         document.querySelectorAll(`[data-tab="${targetTab}"]`).forEach(t => t.classList.add('active'));
 
-        // Hide all tab contents
-        bottomTabContents.forEach(content => content.classList.add('hidden'));
-
-        // Show target tab content
-        document.getElementById(targetTab + '-content').classList.remove('hidden');
+        // Always show realtime-bus-content (sidebar only)
+        realtimeBusContent.classList.remove('hidden');
       });
     });
 
@@ -2471,12 +2541,37 @@
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', function() {
+        const filterType = this.getAttribute('data-filter');
+        const searchFilter = this.closest('.search-filter');
+
         // Remove active class from all filter buttons in the same container
         const container = this.closest('.filter-buttons');
         container.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
 
         // Add active class to clicked button
         this.classList.add('active');
+
+        // Hide all filter contents and show the selected one
+        searchFilter.querySelectorAll('.filter-content').forEach(content => {
+          content.style.display = 'none';
+        });
+        const targetContent = searchFilter.querySelector('[data-filter-content="' + filterType + '"]');
+        if (targetContent) {
+          targetContent.style.display = 'block';
+        }
+      });
+    });
+
+    // Search Help Toggle
+    const helpBadges = document.querySelectorAll('.search-help-badge');
+    helpBadges.forEach(badge => {
+      badge.addEventListener('click', function() {
+        const helpDesc = this.parentElement.querySelector('.search-help-desc');
+        if (helpDesc.style.display === 'none') {
+          helpDesc.style.display = 'block';
+        } else {
+          helpDesc.style.display = 'none';
+        }
       });
     });
 

@@ -245,10 +245,10 @@
         <h2 style="font-size: 1.5rem; font-weight: bold; color: #1e88e5; margin-bottom: 1.5rem;">ITS 안내</h2>
 
         <!-- Tabs -->
-        <div style="display: flex; border: 1px solid #d1d5db; margin-bottom: 2rem;">
-          <button class="its-tab active" data-tab="overview" style="flex: 1; padding: 0.75rem; text-align: center; font-weight: 500; background-color: #1a5c9e; color: white; border: none; cursor: pointer;">ITS 개요</button>
-          <button class="its-tab" data-tab="service" style="flex: 1; padding: 0.75rem; text-align: center; font-weight: 500; background-color: white; color: #4b5563; border-left: 1px solid #d1d5db; cursor: pointer;">서비스 내용</button>
-          <button class="its-tab" data-tab="guide" style="flex: 1; padding: 0.75rem; text-align: center; font-weight: 500; background-color: white; color: #4b5563; border-left: 1px solid #d1d5db; cursor: pointer;">사이트 이용안내</button>
+        <div style="display: flex; margin-bottom: 2rem;">
+          <button class="its-tab active" data-tab="overview" style="flex: 1; padding: 0.75rem; text-align: center; font-weight: 500; background-color: #1a5c9e; color: white; border: 1px solid #d1d5db; cursor: pointer;">ITS 개요</button>
+          <button class="its-tab" data-tab="service" style="flex: 1; padding: 0.75rem; text-align: center; font-weight: 500; background-color: white; color: #1f2937; border: 1px solid #d1d5db; border-left: none; cursor: pointer;">서비스 내용</button>
+          <button class="its-tab" data-tab="guide" style="flex: 1; padding: 0.75rem; text-align: center; font-weight: 500; background-color: white; color: #1f2937; border: 1px solid #d1d5db; border-left: none; cursor: pointer;">사이트 이용안내</button>
         </div>
 
         <!-- Tab Content: ITS 개요 -->
@@ -440,9 +440,9 @@
         <div class="footer-top-content">
           <span class="footer-title">경산시교통정보센터</span>
           <div class="footer-links">
-            <a href="#">개인정보보호방침</a>
+            <a href="../support/privacy.html">개인정보보호방침</a>
             <span class="footer-divider">|</span>
-            <a href="#">찾아오시는길</a>
+            <a href="../center/location.html">찾아오시는길</a>
           </div>
         </div>
       </div>
@@ -484,7 +484,7 @@
         // Remove active class from all tabs
         tabs.forEach(t => {
           t.style.backgroundColor = 'white';
-          t.style.color = '#4b5563';
+          t.style.color = '#1f2937';
           t.classList.remove('active');
         });
 
