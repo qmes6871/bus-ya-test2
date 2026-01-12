@@ -6,7 +6,7 @@
   <meta name="description" content="경산시 교통정보센터 개인정보보호방침">
   <title>개인정보보호방침 - 경산시 교통정보센터</title>
   <link rel="icon" href="../favicon.ico">
-  <link rel="stylesheet" href="../css/styles.css?v=9">
+  <link rel="stylesheet" href="../css/styles.css?v=10">
   <style>
     .privacy-content {
       font-size: 0.9375rem;
@@ -87,17 +87,83 @@
           <img src="../images/logo.png" alt="경산시 교통정보센터">
         </a>
 
-        <nav class="desktop-nav">
+        <!-- 통합 네비게이션 -->
+        <nav class="main-nav">
           <ul class="nav-menu">
-            <li class="nav-item"><a href="../center/intro.html" class="nav-link">센터소개</a></li>
-            <li class="nav-item"><a href="../traffic/cctv.html" class="nav-link">교통정보</a></li>
-            <li class="nav-item"><a href="../bus/fare.html" class="nav-link">버스정보</a></li>
-            <li class="nav-item"><a href="../support/notice.html" class="nav-link">고객센터</a></li>
-            <li class="nav-item"><a href="../directions.html" class="nav-link">길찾기</a></li>
+            <li class="nav-item">
+              <div class="nav-item-header">
+                <a href="../center/intro.html" class="nav-link">센터소개</a>
+                <button class="submenu-toggle" aria-label="하위메뉴 열기">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </button>
+              </div>
+              <ul class="submenu">
+                <li><a href="../center/intro.html">센터소개</a></li>
+                <li><a href="../center/location.html">오시는길</a></li>
+                <li><a href="../center/its.html">ITS 안내</a></li>
+                <li><a href="../center/bis.html">BIS 안내</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <div class="nav-item-header">
+                <a href="../traffic/cctv.html" class="nav-link">교통정보</a>
+                <button class="submenu-toggle" aria-label="하위메뉴 열기">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </button>
+              </div>
+              <ul class="submenu">
+                <li><a href="../traffic/cctv.html">영상(CCTV)정보</a></li>
+                <li><a href="../traffic/parking.html">주차(PIS)정보</a></li>
+                <li><a href="../traffic/vms.html">도로 전광표지(VMS)정보</a></li>
+                <li><a href="../traffic/incident.html">돌발 및 통제정보</a></li>
+                <li><a href="../traffic/statistics.html">교통소통정보 통계</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <div class="nav-item-header">
+                <a href="../bus/fare.html" class="nav-link">버스정보</a>
+                <button class="submenu-toggle" aria-label="하위메뉴 열기">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </button>
+              </div>
+              <ul class="submenu">
+                <li><a href="../bus/fare.html">요금안내</a></li>
+                <li><a href="../bus/transfer.html">환승안내</a></li>
+                <li><a href="../bus/schedule.html">버스운행 시간표</a></li>
+                <li><a href="../bus/lowfloor.html">저상버스 운행안내</a></li>
+                <li><a href="../bus/stops.html">정류소 위치 안내</a></li>
+                <li><a href="../bus/company.html">버스회사 정보조회</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <div class="nav-item-header">
+                <a href="../support/notice.html" class="nav-link">고객센터</a>
+                <button class="submenu-toggle" aria-label="하위메뉴 열기">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </button>
+              </div>
+              <ul class="submenu">
+                <li><a href="../support/notice.html">공지사항</a></li>
+                <li><a href="../support/sitemap.html">사이트맵</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <div class="nav-item-header">
+                <a href="../directions.html" class="nav-link">길찾기</a>
+              </div>
+            </li>
           </ul>
         </nav>
 
-        <button class="mobile-menu-button">
+        <button class="mobile-menu-button" aria-label="메뉴 열기">
           <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
@@ -105,153 +171,6 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
-      </div>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu">
-      <nav>
-        <!-- 센터소개 -->
-        <div class="mobile-menu-item">
-          <button class="mobile-menu-header">
-            <span>센터소개</span>
-            <svg class="chevron-down" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6"/>
-            </svg>
-          </button>
-          <div class="mobile-submenu">
-            <a href="../center/intro.html">센터소개</a>
-            <a href="../center/location.html">오시는길</a>
-            <a href="../center/its.html">ITS 안내</a>
-            <a href="../center/bis.html">BIS 안내</a>
-          </div>
-        </div>
-
-        <!-- 교통정보 -->
-        <div class="mobile-menu-item">
-          <button class="mobile-menu-header">
-            <span>교통정보</span>
-            <svg class="chevron-down" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6"/>
-            </svg>
-          </button>
-          <div class="mobile-submenu">
-            <a href="../traffic/cctv.html">영상(cctv)정보</a>
-            <a href="../traffic/parking.html">주차(PIS)정보</a>
-            <a href="../traffic/vms.html">도로 전광표지(VMS)정보</a>
-            <a href="../traffic/incident.html">돌발 및 통제정보</a>
-            <a href="../traffic/statistics.html">교통소통정보 통계</a>
-          </div>
-        </div>
-
-        <!-- 버스정보 -->
-        <div class="mobile-menu-item">
-          <button class="mobile-menu-header">
-            <span>버스정보</span>
-            <svg class="chevron-down" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6"/>
-            </svg>
-          </button>
-          <div class="mobile-submenu">
-            <a href="../bus/fare.html">요금안내</a>
-            <a href="../bus/transfer.html">환승안내</a>
-            <a href="../bus/schedule.html">버스운행 시간표</a>
-            <a href="../bus/lowfloor.html">저상버스 운행안내</a>
-            <a href="../bus/stops.html">정류소 위치 안내</a>
-            <a href="../bus/company.html">버스회사 정보조회</a>
-          </div>
-        </div>
-
-        <!-- 고객센터 -->
-        <div class="mobile-menu-item">
-          <button class="mobile-menu-header">
-            <span>고객센터</span>
-            <svg class="chevron-down" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6"/>
-            </svg>
-          </button>
-          <div class="mobile-submenu">
-            <a href="../support/notice.html">공지사항</a>
-            <a href="../support/sitemap.html">사이트</a>
-          </div>
-        </div>
-
-        <!-- 길찾기 -->
-        <div class="mobile-menu-item">
-          <button class="mobile-menu-header">
-            <span>길찾기</span>
-          </button>
-        </div>
-      </nav>
-    </div>
-
-    <!-- Mega Menu (Desktop) -->
-    <div class="mega-menu">
-      <div class="container">
-        <div class="mega-menu-content">
-          <!-- Left Side -->
-          <div class="mega-menu-left animate-fade-in">
-            <h2 class="mega-menu-title">센터소개</h2>
-            <div class="mega-menu-banner">
-              <img src="../images/ks-menu-banner.jpg" alt="안전하고 편리하게! 경산시교통정보센터">
-            </div>
-          </div>
-
-          <!-- Right Side - All Menu Columns -->
-          <div class="mega-menu-right">
-            <!-- 센터소개 -->
-            <div class="mega-menu-column animate-fade-in-up">
-              <h3>센터소개</h3>
-              <ul>
-                <li class="animate-fade-in"><a href="../center/intro.html">센터소개</a></li>
-                <li class="animate-fade-in animation-delay-100"><a href="../center/location.html">오시는길</a></li>
-                <li class="animate-fade-in animation-delay-200"><a href="../center/its.html">ITS 안내</a></li>
-                <li class="animate-fade-in animation-delay-300"><a href="../center/bis.html">BIS 안내</a></li>
-              </ul>
-            </div>
-
-            <!-- 교통정보 -->
-            <div class="mega-menu-column animate-fade-in-up animation-delay-100">
-              <h3>교통정보</h3>
-              <ul>
-                <li class="animate-fade-in"><a href="../traffic/cctv.html">영상(cctv)정보</a></li>
-                <li class="animate-fade-in animation-delay-100"><a href="../traffic/parking.html">주차(PIS)정보</a></li>
-                <li class="animate-fade-in animation-delay-200"><a href="../traffic/vms.html">도로 전광표지(VMS)정보</a></li>
-                <li class="animate-fade-in animation-delay-300"><a href="../traffic/incident.html">돌발 및 통제정보</a></li>
-                <li class="animate-fade-in animation-delay-400"><a href="../traffic/statistics.html">교통소통정보 통계</a></li>
-              </ul>
-            </div>
-
-            <!-- 버스정보 -->
-            <div class="mega-menu-column animate-fade-in-up animation-delay-200">
-              <h3>버스정보</h3>
-              <ul>
-                <li class="animate-fade-in"><a href="../bus/fare.html">요금안내</a></li>
-                <li class="animate-fade-in animation-delay-100"><a href="../bus/transfer.html">환승안내</a></li>
-                <li class="animate-fade-in animation-delay-200"><a href="../bus/schedule.html">버스운행 시간표</a></li>
-                <li class="animate-fade-in animation-delay-300"><a href="../bus/lowfloor.html">저상버스 운행안내</a></li>
-                <li class="animate-fade-in animation-delay-400"><a href="../bus/stops.html">정류소 위치 안내</a></li>
-                <li class="animate-fade-in animation-delay-500"><a href="../bus/company.html">버스회사 정보조회</a></li>
-              </ul>
-            </div>
-
-            <!-- 고객센터 -->
-            <div class="mega-menu-column animate-fade-in-up animation-delay-300">
-              <h3>고객센터</h3>
-              <ul>
-                <li class="animate-fade-in"><a href="../support/notice.html">공지사항</a></li>
-                <li class="animate-fade-in animation-delay-100"><a href="../support/sitemap.html">사이트</a></li>
-              </ul>
-            </div>
-
-            <!-- 길찾기 -->
-            <div class="mega-menu-column animate-fade-in-up animation-delay-400">
-              <h3>길찾기</h3>
-              <ul>
-              </ul>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </header>
@@ -271,32 +190,25 @@
 
   <!-- Main Content -->
   <div class="container" style="padding-top: 2rem; padding-bottom: 2rem;">
-    <div class="sub-page-layout">
-      <!-- Mobile Sub-menu -->
-      <div class="mobile-sub-menu">
-        <button class="mobile-sub-menu-header">
-          <span>개인정보보호방침</span>
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div class="sub-page-layout-unified">
+      <!-- 통합 사이드바 -->
+      <aside class="unified-sidebar">
+        <button class="sidebar-header">
+          <div class="sidebar-header-content">
+            <div class="sidebar-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+              </svg>
+            </div>
+            <span>고객센터</span>
+          </div>
+          <svg class="sidebar-toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </button>
-        <div class="mobile-sub-menu-content">
-          <a href="privacy.html" class="active">개인정보보호방침</a>
-        </div>
-      </div>
-
-      <!-- Sidebar -->
-      <aside class="sub-page-sidebar">
-        <div style="background: linear-gradient(to right, #1a5c9e, #2980b9); color: white; padding: 1.25rem; border-radius: 0.5rem 0.5rem 0 0; display: flex; align-items: center; gap: 0.75rem;">
-          <div style="width: 32px; height: 32px; background-color: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-            <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-            </svg>
-          </div>
-          <span style="font-size: 1.25rem; font-weight: bold;">개인정보보호</span>
-        </div>
-        <nav style="border-left: 4px solid #d1d5db; margin-left: 1.25rem; padding: 1rem 0;">
-          <a href="privacy.html" style="display: block; padding: 0.75rem 1.5rem; font-size: 15px; color: #1a5c9e; font-weight: bold; border-left: 4px solid #1a5c9e; margin-left: -4px; text-decoration: none;">개인정보보호방침</a>
+        <nav class="sidebar-content">
+          <a href="notice.html">공지사항</a>
+          <a href="sitemap.html">사이트맵</a>
         </nav>
       </aside>
 

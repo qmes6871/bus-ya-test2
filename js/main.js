@@ -1,269 +1,119 @@
-// Menu data
-const menuData = [
-  {
-    title: "센터소개",
-    items: [
-      { label: "센터소개", href: "/center/intro" },
-      { label: "오시는길", href: "/center/location" },
-      { label: "ITS 안내", href: "/center/its" },
-      { label: "BIS 안내", href: "/center/bis" }
-    ]
-  },
-  {
-    title: "교통정보",
-    items: [
-      { label: "영상(cctv)정보", href: "/traffic/cctv" },
-      { label: "주차(PIS)정보", href: "/traffic/parking" },
-      { label: "도로 전광표지(VMS)정보", href: "/traffic/vms" },
-      { label: "돌발 및 통제정보", href: "/traffic/incident" },
-      { label: "교통소통정보 통계", href: "/traffic/statistics" }
-    ]
-  },
-  {
-    title: "버스정보",
-    items: [
-      { label: "요금안내", href: "/bus/fare" },
-      { label: "환승안내", href: "/bus/transfer" },
-      { label: "버스운행 시간표", href: "/bus/schedule" },
-      { label: "저상버스 운행안내", href: "/bus/lowfloor" },
-      { label: "정류소 위치 안내", href: "/bus/stops" },
-      { label: "버스회사 정보조회", href: "/bus/company" }
-    ]
-  },
-  {
-    title: "고객센터",
-    items: [
-      { label: "공지사항", href: "/support/notice" },
-      { label: "사이트", href: "/support/sitemap" }
-    ]
-  },
-  {
-    title: "길찾기",
-    items: [],
-    href: "/directions"
-  }
-];
+// ===========================================
+// 통합 반응형 네비게이션 (main-nav)
+// ===========================================
 
-// State
-let activeMenu = null;
 let mobileMenuOpen = false;
-let mobileSubMenu = null;
 
-// Initialize
 document.addEventListener('DOMContentLoaded', function() {
-  initializeMenu();
-  initializeMobileMenu();
+  initializeMainNav();
+  initializeUnifiedSidebar();
+  initializeSearchTabs();
+  initializeFooter();
 });
 
-function initializeMenu() {
-  const navItems = document.querySelectorAll('.nav-item');
-  const megaMenu = document.querySelector('.mega-menu');
-
-  navItems.forEach((item, index) => {
-    item.addEventListener('mouseenter', () => {
-      showMegaMenu(index);
-    });
-  });
-
-  document.querySelector('header').addEventListener('mouseleave', () => {
-    hideMegaMenu();
-  });
-
-  if (megaMenu) {
-    megaMenu.addEventListener('mouseenter', () => {
-      if (activeMenu !== null) {
-        showMegaMenu(activeMenu);
-      }
-    });
-
-    megaMenu.addEventListener('mouseleave', () => {
-      hideMegaMenu();
-    });
-  }
-}
-
-function showMegaMenu(index) {
-  activeMenu = index;
-  const megaMenu = document.querySelector('.mega-menu');
-  const megaMenuTitle = document.querySelector('.mega-menu-title');
-  const columns = document.querySelectorAll('.mega-menu-column');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  if (megaMenu && menuData[index]) {
-    megaMenu.classList.add('active');
-
-    if (megaMenuTitle) {
-      megaMenuTitle.textContent = menuData[index].title;
-    }
-
-    columns.forEach((col, colIndex) => {
-      if (colIndex === index) {
-        col.classList.add('active');
-      } else {
-        col.classList.remove('active');
-      }
-    });
-
-    navLinks.forEach((link, linkIndex) => {
-      if (linkIndex === index) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
-    });
-  }
-}
-
-function hideMegaMenu() {
-  activeMenu = null;
-  const megaMenu = document.querySelector('.mega-menu');
-  const navLinks = document.querySelectorAll('.nav-link');
-  const columns = document.querySelectorAll('.mega-menu-column');
-
-  if (megaMenu) {
-    megaMenu.classList.remove('active');
-  }
-
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-  });
-
-  columns.forEach(col => {
-    col.classList.remove('active');
-  });
-}
-
-function initializeMobileMenu() {
+// 통합 네비게이션 초기화
+function initializeMainNav() {
   const mobileMenuButton = document.querySelector('.mobile-menu-button');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  const mobileMenuHeaders = document.querySelectorAll('.mobile-menu-header');
+  const mainNav = document.querySelector('.main-nav');
+  const submenuToggles = document.querySelectorAll('.submenu-toggle');
 
-  if (mobileMenuButton) {
-    mobileMenuButton.addEventListener('click', () => {
+  // 모바일 메뉴 버튼 클릭
+  if (mobileMenuButton && mainNav) {
+    mobileMenuButton.addEventListener('click', function() {
       mobileMenuOpen = !mobileMenuOpen;
-      if (mobileMenu) {
-        if (mobileMenuOpen) {
-          mobileMenu.classList.add('active');
-        } else {
-          mobileMenu.classList.remove('active');
-        }
+
+      if (mobileMenuOpen) {
+        mainNav.classList.add('active');
+      } else {
+        mainNav.classList.remove('active');
+        // 모든 서브메뉴 닫기
+        document.querySelectorAll('.submenu').forEach(sub => sub.classList.remove('active'));
+        document.querySelectorAll('.submenu-toggle').forEach(btn => btn.classList.remove('active'));
       }
 
-      // Update icon
+      // 아이콘 변경
       const menuIcon = mobileMenuButton.querySelector('.menu-icon');
       const closeIcon = mobileMenuButton.querySelector('.close-icon');
       if (menuIcon && closeIcon) {
-        if (mobileMenuOpen) {
-          menuIcon.style.display = 'none';
-          closeIcon.style.display = 'block';
-        } else {
-          menuIcon.style.display = 'block';
-          closeIcon.style.display = 'none';
-        }
+        menuIcon.style.display = mobileMenuOpen ? 'none' : 'block';
+        closeIcon.style.display = mobileMenuOpen ? 'block' : 'none';
       }
     });
   }
 
-  mobileMenuHeaders.forEach((header, index) => {
-    header.addEventListener('click', () => {
-      const menu = menuData[index];
-      if (menu.items && menu.items.length > 0) {
-        if (mobileSubMenu === index) {
-          mobileSubMenu = null;
-        } else {
-          mobileSubMenu = index;
-        }
+  // 서브메뉴 토글 (모바일용)
+  submenuToggles.forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
 
-        const submenu = header.nextElementSibling;
-        const chevron = header.querySelector('.chevron-down, .chevron-up');
+      const navItem = this.closest('.nav-item');
+      const submenu = navItem.querySelector('.submenu');
 
-        if (submenu) {
-          if (mobileSubMenu === index) {
-            submenu.classList.add('active');
-            if (chevron) {
-              chevron.innerHTML = '<path d="M18 15l-6-6-6 6"/>';
-            }
-          } else {
-            submenu.classList.remove('active');
-            if (chevron) {
-              chevron.innerHTML = '<path d="M6 9l6 6 6-6"/>';
-            }
-          }
-        }
-      } else if (menu.href) {
-        window.location.href = menu.href;
+      if (submenu) {
+        // 현재 항목 토글
+        this.classList.toggle('active');
+        submenu.classList.toggle('active');
       }
     });
   });
 
-  // Close mobile menu when clicking on submenu link
-  const mobileSubmenuLinks = document.querySelectorAll('.mobile-submenu a');
-  mobileSubmenuLinks.forEach(link => {
-    link.addEventListener('click', () => {
+  // 메뉴 외부 클릭 시 닫기 (모바일)
+  document.addEventListener('click', function(e) {
+    if (mobileMenuOpen && mainNav && !mainNav.contains(e.target) && !mobileMenuButton.contains(e.target)) {
       mobileMenuOpen = false;
-      if (mobileMenu) {
-        mobileMenu.classList.remove('active');
-      }
-    });
-  });
-}
+      mainNav.classList.remove('active');
 
-// Search functionality
-function handleSearch() {
-  const searchInput = document.querySelector('.search-input');
-  if (searchInput) {
-    const query = searchInput.value.trim();
-    if (query) {
-      // Navigate to search page with query
-      window.location.href = `/bus/search?q=${encodeURIComponent(query)}`;
+      const menuIcon = mobileMenuButton.querySelector('.menu-icon');
+      const closeIcon = mobileMenuButton.querySelector('.close-icon');
+      if (menuIcon && closeIcon) {
+        menuIcon.style.display = 'block';
+        closeIcon.style.display = 'none';
+      }
     }
-  }
+  });
 }
 
-// Add search event listeners
-document.addEventListener('DOMContentLoaded', function() {
-  const searchButton = document.querySelector('.search-button');
-  const searchInput = document.querySelector('.search-input');
+// ===========================================
+// 통합 사이드바 (unified-sidebar)
+// ===========================================
 
-  if (searchButton) {
-    searchButton.addEventListener('click', handleSearch);
-  }
+function initializeUnifiedSidebar() {
+  const sidebarHeaders = document.querySelectorAll('.sidebar-header');
 
-  if (searchInput) {
-    searchInput.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        handleSearch();
+  sidebarHeaders.forEach(header => {
+    header.addEventListener('click', function() {
+      // 모바일에서만 토글 동작
+      if (window.innerWidth < 768) {
+        this.classList.toggle('active');
+        const content = this.nextElementSibling;
+        if (content && content.classList.contains('sidebar-content')) {
+          content.classList.toggle('active');
+        }
       }
     });
-  }
-
-  // Search tab functionality
-  const searchTabs = document.querySelectorAll('.search-tab');
-  searchTabs.forEach(tab => {
-    tab.addEventListener('click', function() {
-      searchTabs.forEach(t => t.classList.remove('active'));
-      this.classList.add('active');
-    });
   });
-});
 
-// Related site navigation
-function navigateToRelatedSite() {
-  const select = document.querySelector('.footer-select');
-  if (select && select.value) {
-    window.open(select.value, '_blank');
-  }
+  // 화면 크기 변경 시 처리
+  window.addEventListener('resize', function() {
+    if (window.innerWidth >= 768) {
+      // 데스크톱: 사이드바 항상 표시
+      document.querySelectorAll('.sidebar-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      document.querySelectorAll('.sidebar-header').forEach(header => {
+        header.classList.remove('active');
+      });
+    }
+  });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  const footerButton = document.querySelector('.footer-button');
-  if (footerButton) {
-    footerButton.addEventListener('click', navigateToRelatedSite);
-  }
-});
+// ===========================================
+// 기존 모바일 서브메뉴 (하위 호환)
+// ===========================================
 
-// Mobile Sub-menu (Accordion) functionality
 document.addEventListener('DOMContentLoaded', function() {
+  // 기존 mobile-sub-menu (하위 호환)
   const mobileSubMenuHeader = document.querySelector('.mobile-sub-menu-header');
   const mobileSubMenuContent = document.querySelector('.mobile-sub-menu-content');
 
@@ -273,4 +123,98 @@ document.addEventListener('DOMContentLoaded', function() {
       mobileSubMenuContent.classList.toggle('active');
     });
   }
+});
+
+// ===========================================
+// 검색 탭 기능
+// ===========================================
+
+function initializeSearchTabs() {
+  const searchTabs = document.querySelectorAll('.search-tab');
+  const searchContents = document.querySelectorAll('.search-content');
+
+  searchTabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      const targetTab = this.getAttribute('data-search-tab');
+
+      // 탭 활성화
+      searchTabs.forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+
+      // 콘텐츠 표시
+      searchContents.forEach(content => {
+        if (content.id === `search-${targetTab}`) {
+          content.style.display = 'block';
+          content.classList.add('active');
+        } else {
+          content.style.display = 'none';
+          content.classList.remove('active');
+        }
+      });
+    });
+  });
+
+  // 도움말 토글
+  const helpBadges = document.querySelectorAll('.search-help-badge');
+  helpBadges.forEach(badge => {
+    badge.addEventListener('click', function() {
+      const desc = this.parentElement.querySelector('.search-help-desc');
+      if (desc) {
+        desc.style.display = desc.style.display === 'none' ? 'block' : 'none';
+      }
+    });
+  });
+}
+
+// ===========================================
+// 푸터 관련 기관 이동
+// ===========================================
+
+function initializeFooter() {
+  const footerButton = document.querySelector('.footer-button');
+  const footerSelect = document.querySelector('.footer-select');
+
+  if (footerButton && footerSelect) {
+    footerButton.addEventListener('click', function() {
+      if (footerSelect.value) {
+        window.open(footerSelect.value, '_blank');
+      }
+    });
+  }
+}
+
+// ===========================================
+// 교통정보 탭 (메인페이지)
+// ===========================================
+
+document.addEventListener('DOMContentLoaded', function() {
+  const trafficTabs = document.querySelectorAll('.traffic-tab');
+
+  trafficTabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      const targetTab = this.getAttribute('data-tab');
+
+      // 탭 스타일 변경
+      trafficTabs.forEach(t => {
+        t.style.fontWeight = '500';
+        t.style.color = '#9ca3af';
+      });
+      this.style.fontWeight = '600';
+      this.style.color = '#374151';
+
+      // 콘텐츠 전환
+      const congestionContent = document.getElementById('congestion-content');
+      const incidentContent = document.getElementById('incident-content');
+
+      if (congestionContent && incidentContent) {
+        if (targetTab === 'congestion') {
+          congestionContent.style.display = 'block';
+          incidentContent.style.display = 'none';
+        } else {
+          congestionContent.style.display = 'none';
+          incidentContent.style.display = 'flex';
+        }
+      }
+    });
+  });
 });
