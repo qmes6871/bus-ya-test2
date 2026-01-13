@@ -6,7 +6,7 @@
   <meta name="description" content="경산버스정보 통합검색 - 버스노선, 실시간 버스정보 검색">
   <title>버스정보 통합검색 - 경산시 교통정보센터</title>
   <link rel="icon" href="../favicon.ico">
-  <link rel="stylesheet" href="../css/styles.css?v=10">
+  <link rel="stylesheet" href="../css/styles.css?v=22">
   <style>
     /* Bus Search Page Specific Styles */
     html, body {
@@ -70,6 +70,192 @@
       cursor: pointer;
       background: none;
       border: none;
+    }
+
+    /* Stop Info Popup */
+    .stop-info {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      width: 280px;
+      z-index: 100;
+      overflow: hidden;
+    }
+
+    .stop-info-header {
+      background: #4fc3f7;
+      color: #fff;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      cursor: move;
+      user-select: none;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .stop-info-header svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .stop-info-body {
+      padding: 12px;
+    }
+
+    .stop-info-row {
+      display: flex;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 8px 0;
+    }
+
+    .stop-info-row:last-child {
+      border-bottom: none;
+    }
+
+    .stop-info-label {
+      width: 70px;
+      font-size: 12px;
+      color: #6b7280;
+      flex-shrink: 0;
+    }
+
+    .stop-info-value {
+      font-size: 12px;
+      color: #111827;
+      flex: 1;
+    }
+
+    .stop-info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+
+    .stop-info-table thead {
+      background: #4fc3f7;
+    }
+
+    .stop-info-table th {
+      color: #fff;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 8px 6px;
+      text-align: center;
+    }
+
+    .stop-info-table td {
+      font-size: 12px;
+      padding: 10px 6px;
+      text-align: center;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .stop-info-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .stop-info-table .route-num {
+      color: #2196f3;
+      font-weight: 600;
+    }
+
+    .stop-info-table .arrival-time {
+      text-decoration: underline;
+      color: #111827;
+    }
+
+    .stop-info-close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* VMS Info Popup */
+    .vms-info {
+      position: absolute;
+      top: 15%;
+      right: 10%;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      width: 280px;
+      z-index: 100;
+      overflow: hidden;
+    }
+
+    .vms-info-header {
+      background: #333;
+      color: #fff;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: move;
+      user-select: none;
+    }
+
+    .vms-info-body {
+      padding: 12px;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .vms-info-body img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .vms-message {
+      background: #fffde7;
+      border: 2px solid #fdd835;
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .vms-message-icon {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 8px;
+    }
+
+    .vms-message-text {
+      font-size: 18px;
+      font-weight: bold;
+      color: #d32f2f;
+      line-height: 1.4;
+    }
+
+    .vms-message-text .highlight {
+      color: #1565c0;
+    }
+
+    .vms-info-close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      line-height: 1;
     }
 
     /* Bottom Menu Tabs */
@@ -1390,12 +1576,63 @@
       color: #6b7280;
     }
 
+    /* 범례 토글 버튼 (PC에서 숨김) */
+    .map-legend-toggle {
+      display: none;
+    }
+
+    /* 범례 닫기 버튼 (PC에서 숨김) */
+    .map-legend-close {
+      display: none;
+    }
+
     @media (max-width: 767px) {
+      /* 범례 토글 버튼 (모바일에서 표시) */
+      .map-legend-toggle {
+        display: block;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        background: white;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #374151;
+        cursor: pointer;
+        z-index: 10;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      /* 범례 (모바일에서 기본 숨김) */
       .map-legend {
-        bottom: 5px;
-        right: 5px;
-        padding: 8px 10px;
-        max-width: calc(100% - 20px);
+        display: none;
+        bottom: 10px;
+        right: 10px;
+        left: 10px;
+        padding: 12px;
+        max-width: none;
+      }
+
+      .map-legend.active {
+        display: block;
+      }
+
+      /* 범례 닫기 버튼 (모바일에서 표시) */
+      .map-legend-close {
+        display: block;
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 24px;
+        height: 24px;
+        background: none;
+        border: none;
+        font-size: 20px;
+        color: #6b7280;
+        cursor: pointer;
+        line-height: 1;
       }
 
       .map-legend-items {
@@ -1403,7 +1640,7 @@
       }
 
       .map-legend-item {
-        font-size: 9px;
+        font-size: 11px;
       }
 
       .legend-line {
@@ -1427,10 +1664,17 @@
           <img src="../images/logo.png" alt="경산시 교통정보센터">
         </a>
 
-        <!-- 통합 네비게이션 -->
+        <!-- 통합 반응형 네비게이션 + 메가메뉴 -->
         <nav class="main-nav">
+          <!-- 모바일 메뉴 헤더 (모바일에서만 표시) -->
+          <div class="mobile-nav-header">
+            <a href="../index.html" class="mobile-nav-logo">
+              <img src="../images/logo.png" alt="경산시 교통정보센터">
+            </a>
+            <button class="mobile-nav-close" aria-label="메뉴 닫기">×</button>
+          </div>
           <ul class="nav-menu">
-            <li class="nav-item">
+            <li class="nav-item" data-menu="center">
               <div class="nav-item-header">
                 <a href="../center/intro.html" class="nav-link">센터소개</a>
                 <button class="submenu-toggle" aria-label="하위메뉴 열기">
@@ -1446,7 +1690,7 @@
                 <li><a href="../center/bis.html">BIS 안내</a></li>
               </ul>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" data-menu="traffic">
               <div class="nav-item-header">
                 <a href="../traffic/cctv.html" class="nav-link">교통정보</a>
                 <button class="submenu-toggle" aria-label="하위메뉴 열기">
@@ -1463,7 +1707,7 @@
                 <li><a href="../traffic/statistics.html">교통소통정보 통계</a></li>
               </ul>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" data-menu="bus">
               <div class="nav-item-header">
                 <a href="../bus/fare.html" class="nav-link">버스정보</a>
                 <button class="submenu-toggle" aria-label="하위메뉴 열기">
@@ -1481,7 +1725,7 @@
                 <li><a href="../bus/company.html">버스회사 정보조회</a></li>
               </ul>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" data-menu="support">
               <div class="nav-item-header">
                 <a href="../support/notice.html" class="nav-link">고객센터</a>
                 <button class="submenu-toggle" aria-label="하위메뉴 열기">
@@ -1495,7 +1739,7 @@
                 <li><a href="../support/sitemap.html">사이트맵</a></li>
               </ul>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" data-menu="directions">
               <div class="nav-item-header">
                 <a href="../directions.html" class="nav-link">길찾기</a>
               </div>
@@ -1511,6 +1755,74 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
+      </div>
+    </div>
+
+    <!-- 메가메뉴 (PC에서만 표시) -->
+    <div class="mega-menu" id="megaMenu">
+      <div class="container">
+        <div class="mega-menu-content">
+          <div class="mega-menu-left">
+            <h2 class="mega-menu-title" id="megaMenuTitle">센터소개</h2>
+            <div class="mega-menu-banner">
+              <div class="mega-menu-banner-content">
+                <span class="banner-arrow">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                  </svg>
+                </span>
+                <p class="banner-text-small">안전하고 편리하게 !</p>
+                <p class="banner-text-large">경산시교통정보센터</p>
+              </div>
+              <img src="../images/mega-menu-banner.png" alt="메가메뉴 배너" onerror="this.style.display='none'">
+            </div>
+          </div>
+          <div class="mega-menu-right">
+            <div class="mega-menu-column" data-col="center">
+              <h3 class="column-title">센터소개</h3>
+              <ul class="column-links">
+                <li><a href="../center/intro.html">센터소개</a></li>
+                <li><a href="../center/location.html">오시는길</a></li>
+                <li><a href="../center/its.html">ITS 안내</a></li>
+                <li><a href="../center/bis.html">BIS 안내</a></li>
+              </ul>
+            </div>
+            <div class="mega-menu-column" data-col="traffic">
+              <h3 class="column-title">교통정보</h3>
+              <ul class="column-links">
+                <li><a href="../traffic/cctv.html">영상(CCTV)정보</a></li>
+                <li><a href="../traffic/parking.html">주차(PIS)정보</a></li>
+                <li><a href="../traffic/vms.html">도로 전광표지(VMS)정보</a></li>
+                <li><a href="../traffic/incident.html">돌발 및 통제정보</a></li>
+                <li><a href="../traffic/statistics.html">교통소통정보 통계</a></li>
+              </ul>
+            </div>
+            <div class="mega-menu-column" data-col="bus">
+              <h3 class="column-title">버스정보</h3>
+              <ul class="column-links">
+                <li><a href="../bus/fare.html">요금안내</a></li>
+                <li><a href="../bus/transfer.html">환승안내</a></li>
+                <li><a href="../bus/schedule.html">버스운행 시간표</a></li>
+                <li><a href="../bus/lowfloor.html">저상버스 운행안내</a></li>
+                <li><a href="../bus/stops.html">정류소 위치 안내</a></li>
+                <li><a href="../bus/company.html">버스회사 정보조회</a></li>
+              </ul>
+            </div>
+            <div class="mega-menu-column" data-col="support">
+              <h3 class="column-title">고객센터</h3>
+              <ul class="column-links">
+                <li><a href="../support/notice.html">공지사항</a></li>
+                <li><a href="../support/sitemap.html">사이트맵</a></li>
+              </ul>
+            </div>
+            <div class="mega-menu-column" data-col="directions">
+              <h3 class="column-title">길찾기</h3>
+              <ul class="column-links">
+                <li><a href="../directions.html">길찾기 서비스</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -1531,8 +1843,85 @@
         </div>
         <button class="bus-marker-close">x</button>
       </div>
+
+      <!-- Stop Info Popup -->
+      <div class="stop-info">
+        <button class="stop-info-close">×</button>
+        <div class="stop-info-header">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="14" rx="2" stroke-width="2"/>
+            <circle cx="7" cy="18" r="2" stroke-width="2"/>
+            <circle cx="17" cy="18" r="2" stroke-width="2"/>
+          </svg>
+          <span>경산시청발관(경산농협)</span>
+        </div>
+        <div class="stop-info-body">
+          <div class="stop-info-row">
+            <span class="stop-info-label">정류소 번호</span>
+            <span class="stop-info-value">360004200</span>
+          </div>
+          <div class="stop-info-row">
+            <span class="stop-info-label">경유노선</span>
+            <span class="stop-info-value">100, 399, 509, 912, 918, 989, 990, 999-1, 경산2-1, 남산1, 압량1</span>
+          </div>
+          <table class="stop-info-table">
+            <thead>
+              <tr>
+                <th>노선</th>
+                <th>도착</th>
+                <th>현 위치</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="route-num">399</td>
+                <td class="arrival-time">전</td>
+                <td>출발</td>
+              </tr>
+              <tr>
+                <td class="route-num">509</td>
+                <td class="arrival-time">3분</td>
+                <td>태왕드림하이츠 앞</td>
+              </tr>
+              <tr>
+                <td class="route-num">100(저상)</td>
+                <td class="arrival-time">15분</td>
+                <td>사동부영1차A</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- VMS Info Popup -->
+      <div class="vms-info">
+        <button class="vms-info-close">×</button>
+        <div class="vms-info-header">
+          <span>VMS(협석교차로 → 백천네거리)</span>
+        </div>
+        <div class="vms-info-body">
+          <div class="vms-message">
+            <svg class="vms-message-icon" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="45" fill="none" stroke="#d32f2f" stroke-width="6"/>
+              <line x1="20" y1="80" x2="80" y2="20" stroke="#d32f2f" stroke-width="6"/>
+              <rect x="35" y="30" width="30" height="50" rx="5" fill="none" stroke="#333" stroke-width="3"/>
+              <rect x="40" y="35" width="20" height="30" fill="#333"/>
+              <circle cx="50" cy="72" r="4" fill="#333"/>
+            </svg>
+            <div class="vms-message-text">
+              <span class="highlight">운전중</span> 휴대폰<br>
+              <span class="highlight">사</span> <span class="highlight">용</span> <span class="highlight">금</span> <span class="highlight">지</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map Legend Toggle Button (모바일) -->
+      <button class="map-legend-toggle" id="legendToggle">범례보기</button>
+
       <!-- Map Legend -->
-      <div class="map-legend">
+      <div class="map-legend" id="mapLegend">
+        <button class="map-legend-close" id="legendClose">×</button>
         <div class="map-legend-section">
           <div class="map-legend-title">버스노선 방향 & 정류소 안내</div>
           <div class="map-legend-items">
@@ -2257,7 +2646,7 @@
     </div>
   </footer>
 
-  <script src="../js/main.js"></script>
+  <script src="../js/main.js?v=3"></script>
   <script>
     // Bottom Menu Tab Switching
     const bottomMenuTabs = document.querySelectorAll('.bottom-menu-tab');
@@ -2429,6 +2818,170 @@
         this.closest('.bus-marker').style.display = 'none';
       });
     });
+
+    // Stop Info Close Button
+    const stopInfoCloseBtns = document.querySelectorAll('.stop-info-close');
+    stopInfoCloseBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        this.closest('.stop-info').style.display = 'none';
+      });
+    });
+
+    // Stop Info Drag (마우스 & 터치)
+    const stopInfoPopups = document.querySelectorAll('.stop-info');
+    stopInfoPopups.forEach(popup => {
+      const header = popup.querySelector('.stop-info-header');
+      if (!header) return;
+
+      let isDragging = false;
+      let startX, startY, initialX, initialY;
+
+      // 초기 위치 설정 (transform 제거)
+      const rect = popup.getBoundingClientRect();
+      const container = popup.parentElement.getBoundingClientRect();
+      popup.style.left = (rect.left - container.left) + 'px';
+      popup.style.top = (rect.top - container.top) + 'px';
+      popup.style.transform = 'none';
+
+      function startDrag(clientX, clientY) {
+        isDragging = true;
+        startX = clientX;
+        startY = clientY;
+        initialX = popup.offsetLeft;
+        initialY = popup.offsetTop;
+        popup.style.zIndex = '200';
+      }
+
+      function moveDrag(clientX, clientY) {
+        if (!isDragging) return;
+        const dx = clientX - startX;
+        const dy = clientY - startY;
+        popup.style.left = (initialX + dx) + 'px';
+        popup.style.top = (initialY + dy) + 'px';
+      }
+
+      function endDrag() {
+        isDragging = false;
+        popup.style.zIndex = '100';
+      }
+
+      // 마우스 이벤트
+      header.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        startDrag(e.clientX, e.clientY);
+      });
+
+      document.addEventListener('mousemove', function(e) {
+        moveDrag(e.clientX, e.clientY);
+      });
+
+      document.addEventListener('mouseup', endDrag);
+
+      // 터치 이벤트
+      header.addEventListener('touchstart', function(e) {
+        const touch = e.touches[0];
+        startDrag(touch.clientX, touch.clientY);
+      }, { passive: true });
+
+      document.addEventListener('touchmove', function(e) {
+        if (!isDragging) return;
+        const touch = e.touches[0];
+        moveDrag(touch.clientX, touch.clientY);
+      }, { passive: true });
+
+      document.addEventListener('touchend', endDrag);
+    });
+
+    // VMS Info Close Button
+    const vmsInfoCloseBtns = document.querySelectorAll('.vms-info-close');
+    vmsInfoCloseBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        this.closest('.vms-info').style.display = 'none';
+      });
+    });
+
+    // VMS Info Drag (마우스 & 터치)
+    const vmsInfoPopups = document.querySelectorAll('.vms-info');
+    vmsInfoPopups.forEach(popup => {
+      const header = popup.querySelector('.vms-info-header');
+      if (!header) return;
+
+      let isDragging = false;
+      let startX, startY, initialX, initialY;
+
+      // 초기 위치 설정
+      const rect = popup.getBoundingClientRect();
+      const container = popup.parentElement.getBoundingClientRect();
+      popup.style.left = (rect.left - container.left) + 'px';
+      popup.style.top = (rect.top - container.top) + 'px';
+
+      function startDrag(clientX, clientY) {
+        isDragging = true;
+        startX = clientX;
+        startY = clientY;
+        initialX = popup.offsetLeft;
+        initialY = popup.offsetTop;
+        popup.style.zIndex = '200';
+      }
+
+      function moveDrag(clientX, clientY) {
+        if (!isDragging) return;
+        const dx = clientX - startX;
+        const dy = clientY - startY;
+        popup.style.left = (initialX + dx) + 'px';
+        popup.style.top = (initialY + dy) + 'px';
+      }
+
+      function endDrag() {
+        isDragging = false;
+        popup.style.zIndex = '100';
+      }
+
+      // 마우스 이벤트
+      header.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        startDrag(e.clientX, e.clientY);
+      });
+
+      document.addEventListener('mousemove', function(e) {
+        moveDrag(e.clientX, e.clientY);
+      });
+
+      document.addEventListener('mouseup', endDrag);
+
+      // 터치 이벤트
+      header.addEventListener('touchstart', function(e) {
+        const touch = e.touches[0];
+        startDrag(touch.clientX, touch.clientY);
+      }, { passive: true });
+
+      document.addEventListener('touchmove', function(e) {
+        if (!isDragging) return;
+        const touch = e.touches[0];
+        moveDrag(touch.clientX, touch.clientY);
+      }, { passive: true });
+
+      document.addEventListener('touchend', endDrag);
+    });
+
+    // 범례 토글 (모바일)
+    const legendToggle = document.getElementById('legendToggle');
+    const mapLegend = document.getElementById('mapLegend');
+    const legendClose = document.getElementById('legendClose');
+
+    if (legendToggle && mapLegend) {
+      legendToggle.addEventListener('click', function() {
+        mapLegend.classList.add('active');
+        this.style.display = 'none';
+      });
+    }
+
+    if (legendClose && mapLegend && legendToggle) {
+      legendClose.addEventListener('click', function() {
+        mapLegend.classList.remove('active');
+        legendToggle.style.display = 'block';
+      });
+    }
   </script>
 </body>
 </html>

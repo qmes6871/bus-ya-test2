@@ -1,11 +1,13 @@
 // ===========================================
-// 통합 반응형 네비게이션 (main-nav)
+// 통합 반응형 네비게이션 (main-nav) + 메가메뉴
 // ===========================================
 
 let mobileMenuOpen = false;
+let megaMenuTimeout = null;
 
 document.addEventListener('DOMContentLoaded', function() {
   initializeMainNav();
+  initializeMegaMenu();
   initializeUnifiedSidebar();
   initializeSearchTabs();
   initializeFooter();
@@ -14,62 +16,212 @@ document.addEventListener('DOMContentLoaded', function() {
 // 통합 네비게이션 초기화
 function initializeMainNav() {
   const mobileMenuButton = document.querySelector('.mobile-menu-button');
+  const mobileNavClose = document.querySelector('.mobile-nav-close');
   const mainNav = document.querySelector('.main-nav');
+  const navLinks = document.querySelectorAll('.main-nav .nav-link');
   const submenuToggles = document.querySelectorAll('.submenu-toggle');
 
-  // 모바일 메뉴 버튼 클릭
+  // 모바일 여부 체크
+  function isMobile() {
+    return window.innerWidth < 768;
+  }
+
+  // 메뉴 닫기 함수
+  function closeMenu() {
+    mobileMenuOpen = false;
+    mainNav.classList.remove('active');
+    document.querySelectorAll('.submenu').forEach(sub => sub.classList.remove('active'));
+    document.querySelectorAll('.submenu-toggle').forEach(btn => btn.classList.remove('active'));
+    document.body.style.overflow = '';
+
+    // 햄버거 아이콘 복원
+    const menuIcon = mobileMenuButton?.querySelector('.menu-icon');
+    const closeIcon = mobileMenuButton?.querySelector('.close-icon');
+    if (menuIcon && closeIcon) {
+      menuIcon.style.display = 'block';
+      closeIcon.style.display = 'none';
+    }
+  }
+
+  // 메뉴 열기 함수
+  function openMenu() {
+    mobileMenuOpen = true;
+    mainNav.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // 햄버거 아이콘 변경
+    const menuIcon = mobileMenuButton?.querySelector('.menu-icon');
+    const closeIcon = mobileMenuButton?.querySelector('.close-icon');
+    if (menuIcon && closeIcon) {
+      menuIcon.style.display = 'none';
+      closeIcon.style.display = 'block';
+    }
+  }
+
+  // 서브메뉴 토글 함수
+  function toggleSubmenu(navItem) {
+    const submenu = navItem.querySelector('.submenu');
+    const toggle = navItem.querySelector('.submenu-toggle');
+
+    if (submenu) {
+      toggle?.classList.toggle('active');
+      submenu.classList.toggle('active');
+    }
+  }
+
+  // 모바일 메뉴 버튼 (햄버거) 클릭
   if (mobileMenuButton && mainNav) {
     mobileMenuButton.addEventListener('click', function() {
-      mobileMenuOpen = !mobileMenuOpen;
-
       if (mobileMenuOpen) {
-        mainNav.classList.add('active');
+        closeMenu();
       } else {
-        mainNav.classList.remove('active');
-        // 모든 서브메뉴 닫기
-        document.querySelectorAll('.submenu').forEach(sub => sub.classList.remove('active'));
-        document.querySelectorAll('.submenu-toggle').forEach(btn => btn.classList.remove('active'));
-      }
-
-      // 아이콘 변경
-      const menuIcon = mobileMenuButton.querySelector('.menu-icon');
-      const closeIcon = mobileMenuButton.querySelector('.close-icon');
-      if (menuIcon && closeIcon) {
-        menuIcon.style.display = mobileMenuOpen ? 'none' : 'block';
-        closeIcon.style.display = mobileMenuOpen ? 'block' : 'none';
+        openMenu();
       }
     });
   }
 
-  // 서브메뉴 토글 (모바일용)
+  // 모바일 메뉴 X 버튼 클릭
+  if (mobileNavClose) {
+    mobileNavClose.addEventListener('click', function() {
+      closeMenu();
+    });
+  }
+
+  // 모바일: 메뉴 링크 클릭 시 서브메뉴 토글 (서브메뉴가 있는 경우)
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      if (!isMobile()) return; // PC에서는 기본 동작 (링크 이동)
+
+      const navItem = this.closest('.nav-item');
+      const submenu = navItem.querySelector('.submenu');
+
+      // 서브메뉴가 있으면 토글, 없으면 링크 이동
+      if (submenu) {
+        e.preventDefault();
+        toggleSubmenu(navItem);
+      }
+    });
+  });
+
+  // 서브메뉴 토글 버튼 클릭 (화살표 버튼)
   submenuToggles.forEach(toggle => {
     toggle.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
 
       const navItem = this.closest('.nav-item');
-      const submenu = navItem.querySelector('.submenu');
-
-      if (submenu) {
-        // 현재 항목 토글
-        this.classList.toggle('active');
-        submenu.classList.toggle('active');
-      }
+      toggleSubmenu(navItem);
     });
   });
 
-  // 메뉴 외부 클릭 시 닫기 (모바일)
-  document.addEventListener('click', function(e) {
-    if (mobileMenuOpen && mainNav && !mainNav.contains(e.target) && !mobileMenuButton.contains(e.target)) {
-      mobileMenuOpen = false;
-      mainNav.classList.remove('active');
-
-      const menuIcon = mobileMenuButton.querySelector('.menu-icon');
-      const closeIcon = mobileMenuButton.querySelector('.close-icon');
-      if (menuIcon && closeIcon) {
-        menuIcon.style.display = 'block';
-        closeIcon.style.display = 'none';
+  // 서브메뉴 링크 클릭 시 메뉴 닫기 (모바일)
+  document.querySelectorAll('.main-nav .submenu a').forEach(link => {
+    link.addEventListener('click', function() {
+      if (isMobile()) {
+        closeMenu();
       }
+    });
+  });
+}
+
+// ===========================================
+// 반응형 메가메뉴 (PC hover 전용)
+// ===========================================
+
+function initializeMegaMenu() {
+  const megaMenu = document.getElementById('megaMenu');
+  const megaMenuTitle = document.getElementById('megaMenuTitle');
+  const navItems = document.querySelectorAll('.main-nav .nav-item[data-menu]');
+  const megaMenuColumns = document.querySelectorAll('.mega-menu-column[data-col]');
+
+  if (!megaMenu || !navItems.length) return;
+
+  // 메뉴 제목 매핑
+  const menuTitles = {
+    center: '센터소개',
+    traffic: '교통정보',
+    bus: '버스정보',
+    support: '고객센터',
+    directions: '길찾기'
+  };
+
+  // PC에서만 메가메뉴 동작
+  function isDesktop() {
+    return window.innerWidth >= 768;
+  }
+
+  // 메가메뉴 표시
+  function showMegaMenu(menuType) {
+    if (!isDesktop()) return;
+
+    clearTimeout(megaMenuTimeout);
+
+    // 제목 업데이트
+    if (megaMenuTitle) {
+      megaMenuTitle.textContent = menuTitles[menuType] || '센터소개';
+    }
+
+    // 활성 카테고리 표시
+    megaMenuColumns.forEach(col => {
+      col.classList.remove('active');
+      if (col.dataset.col === menuType) {
+        col.classList.add('active');
+      }
+    });
+
+    // 메가메뉴 표시
+    megaMenu.classList.add('active');
+  }
+
+  // 메가메뉴 숨기기
+  function hideMegaMenu() {
+    megaMenuTimeout = setTimeout(() => {
+      megaMenu.classList.remove('active');
+    }, 150);
+  }
+
+  // 네비게이션 아이템 hover 이벤트
+  navItems.forEach(item => {
+    const menuType = item.dataset.menu;
+
+    item.addEventListener('mouseenter', () => {
+      showMegaMenu(menuType);
+    });
+
+    item.addEventListener('mouseleave', () => {
+      hideMegaMenu();
+    });
+  });
+
+  // 메가메뉴 자체 hover 이벤트
+  megaMenu.addEventListener('mouseenter', () => {
+    clearTimeout(megaMenuTimeout);
+  });
+
+  megaMenu.addEventListener('mouseleave', () => {
+    hideMegaMenu();
+  });
+
+  // 메가메뉴 내 카테고리 열 hover 시 활성화
+  megaMenuColumns.forEach(col => {
+    col.addEventListener('mouseenter', () => {
+      const colType = col.dataset.col;
+
+      // 제목 업데이트
+      if (megaMenuTitle) {
+        megaMenuTitle.textContent = menuTitles[colType] || '센터소개';
+      }
+
+      // 활성 표시 변경
+      megaMenuColumns.forEach(c => c.classList.remove('active'));
+      col.classList.add('active');
+    });
+  });
+
+  // 화면 크기 변경 시 메가메뉴 닫기
+  window.addEventListener('resize', () => {
+    if (!isDesktop()) {
+      megaMenu.classList.remove('active');
     }
   });
 }
