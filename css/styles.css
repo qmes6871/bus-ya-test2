@@ -425,6 +425,17 @@ header {
     z-index: 1000;
   }
 
+  /* 메가메뉴 컨테이너 - 왼쪽 패딩 제거 */
+  .mega-menu > .container {
+    padding-left: 0;
+    max-width: none;
+  }
+
+  /* 메가메뉴 왼쪽 영역 - 화면 왼쪽 끝에서 시작 */
+  .mega-menu-left {
+    width: 300px;
+  }
+
   /* 메가메뉴 활성화 (JS로 제어) */
   .mega-menu.active {
     display: block;
@@ -453,7 +464,7 @@ header {
    =========================================== */
 @media (min-width: 1024px) {
   .mega-menu-left {
-    width: 250px;
+    width: 350px;
   }
 
   .mega-menu-column {
@@ -471,9 +482,8 @@ header {
 
 @media (min-width: 1200px) {
   .mega-menu-left {
-    width: 350px;
+    width: 400px;
   }
-
 }
 
 /* Main Section */
