@@ -169,6 +169,7 @@ header {
   color: #1e5799;
 }
 
+
 .mobile-menu-button {
   display: flex;
   align-items: center;
@@ -284,7 +285,7 @@ header {
   border-right: 1px solid #e5e7eb;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background: #f0f0f0;
   position: relative;
   overflow: hidden;
 }
@@ -348,8 +349,9 @@ header {
 
 .mega-menu-column {
   flex: 1;
-  padding: 1.25rem 0.75rem;
+  padding: 0 0.75rem 1.25rem;
   border-right: 1px solid #f3f4f6;
+  border-top: 3px solid transparent;
 }
 
 .mega-menu-column:last-child {
@@ -357,10 +359,10 @@ header {
 }
 
 .mega-menu-column h3 {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.9375rem;
   margin-bottom: 0.75rem;
-  padding-bottom: 0.5rem;
+  padding: 1rem 0 0.5rem;
   border-bottom: 1px solid #e5e7eb;
   text-align: center;
   color: #374151;
@@ -375,10 +377,13 @@ header {
   color: #1e5799;
 }
 
-/* 활성 카테고리 스타일 */
+/* 활성 카테고리 스타일 - 상단 파란 보더 */
+.mega-menu-column.active {
+  border-top: 3px solid #1e5799;
+}
+
 .mega-menu-column.active h3 {
   color: #1e5799;
-  border-bottom-color: #1e5799;
 }
 
 .mega-menu-column.active h3 a {
@@ -420,20 +425,38 @@ header {
     left: 0;
     width: 100%;
     background: white;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    border-top: 2px solid #1e5799;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    overflow: hidden;
   }
 
-  /* 메가메뉴 컨테이너 - 왼쪽 패딩 제거 */
+  /* 메가메뉴 컨테이너 - 전체 너비 사용 */
   .mega-menu > .container {
-    padding-left: 0;
     max-width: none;
+    padding: 0;
   }
 
-  /* 메가메뉴 왼쪽 영역 - 화면 왼쪽 끝에서 시작 */
+  /* 메가메뉴 왼쪽 영역 - 뷰포트 왼쪽 끝부터 시작 */
   .mega-menu-left {
-    width: 300px;
+    flex: none;
+    width: calc((100vw - min(100vw, 1400px)) / 2 + 1rem + 220px);
+    padding-left: calc((100vw - min(100vw, 1400px)) / 2 + 1rem);
+  }
+
+  /* 메가메뉴 오른쪽 영역 - 헤더 컨테이너 오른쪽 끝에 맞춤 */
+  .mega-menu-right {
+    padding-right: calc((100vw - min(100vw, 1400px)) / 2 + 1rem);
+  }
+
+  /* 타이틀, 배너를 메가메뉴 왼쪽 끝부터 시작 */
+  .mega-menu-title {
+    margin-left: calc(-1 * ((100vw - min(100vw, 1400px)) / 2 + 1rem));
+    padding-left: calc((100vw - min(100vw, 1400px)) / 2 + 1.5rem);
+  }
+
+  .mega-menu-banner {
+    margin-left: calc(-1 * ((100vw - min(100vw, 1400px)) / 2 + 1rem));
+    width: calc(100% + (100vw - min(100vw, 1400px)) / 2 + 1rem);
   }
 
   /* 메가메뉴 활성화 (JS로 제어) */
@@ -464,11 +487,12 @@ header {
    =========================================== */
 @media (min-width: 1024px) {
   .mega-menu-left {
-    width: 350px;
+    width: calc((100vw - min(100vw, 1400px)) / 2 + 1rem + 280px);
+    padding-left: calc((100vw - min(100vw, 1400px)) / 2 + 1rem);
   }
 
   .mega-menu-column {
-    padding: 1.5rem 1rem;
+    padding: 0 1rem 1.5rem;
   }
 
   .mega-menu-column h3 {
@@ -482,7 +506,8 @@ header {
 
 @media (min-width: 1200px) {
   .mega-menu-left {
-    width: 400px;
+    width: calc((100vw - min(100vw, 1400px)) / 2 + 1rem + 320px);
+    padding-left: calc((100vw - min(100vw, 1400px)) / 2 + 1rem);
   }
 }
 
@@ -1082,7 +1107,7 @@ footer {
   }
 
   .logo {
-    width: 250px;
+    width: 220px;
     flex-shrink: 0;
     max-width: none;
   }
@@ -1468,6 +1493,19 @@ footer {
   .main-nav .submenu li a {
     padding: 0.75rem 1rem;
     text-align: center;
+  }
+}
+
+/* 로고 너비 - 대형 화면 (메가메뉴 왼쪽과 동기화) */
+@media (min-width: 1024px) {
+  .logo {
+    width: 280px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .logo {
+    width: 320px;
   }
 }
 

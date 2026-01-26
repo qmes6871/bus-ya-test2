@@ -169,6 +169,14 @@ function initializeMegaMenu() {
       }
     });
 
+    // nav-item 활성 표시
+    navItems.forEach(item => {
+      item.classList.remove('mega-active');
+      if (item.dataset.menu === menuType) {
+        item.classList.add('mega-active');
+      }
+    });
+
     // 메가메뉴 표시
     megaMenu.classList.add('active');
   }
@@ -177,6 +185,7 @@ function initializeMegaMenu() {
   function hideMegaMenu() {
     megaMenuTimeout = setTimeout(() => {
       megaMenu.classList.remove('active');
+      navItems.forEach(item => item.classList.remove('mega-active'));
     }, 150);
   }
 
@@ -215,6 +224,14 @@ function initializeMegaMenu() {
       // 활성 표시 변경
       megaMenuColumns.forEach(c => c.classList.remove('active'));
       col.classList.add('active');
+
+      // nav-item 활성 표시 변경
+      navItems.forEach(item => {
+        item.classList.remove('mega-active');
+        if (item.dataset.menu === colType) {
+          item.classList.add('mega-active');
+        }
+      });
     });
   });
 
@@ -222,6 +239,7 @@ function initializeMegaMenu() {
   window.addEventListener('resize', () => {
     if (!isDesktop()) {
       megaMenu.classList.remove('active');
+      navItems.forEach(item => item.classList.remove('mega-active'));
     }
   });
 }
