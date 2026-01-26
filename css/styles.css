@@ -285,7 +285,7 @@ header {
   border-right: 1px solid #e5e7eb;
   display: flex;
   flex-direction: column;
-  background: #f0f0f0;
+  background: #ffffff;
   position: relative;
   overflow: hidden;
 }
