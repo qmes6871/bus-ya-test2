@@ -23,7 +23,20 @@
       "Bash(for i in 5 10 15 20 30 40 50 60 70 80 90 100)",
       "Bash(do convert:*)",
       "Bash(find:*)",
-      "Bash(git log:*)"
+      "Bash(git log:*)",
+      "Bash(xargs grep:*)",
+      "Bash(grep:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(git reset:*)",
+      "Bash(git rm:*)",
+      "Bash(xargs sed:*)",
+      "Bash(if [ -f /var/www/bus/directions.html ])",
+      "Bash(then)",
+      "Bash(fi)",
+      "Bash(for:*)",
+      "Bash(do)",
+      "Bash(perl -i -0pe:*)",
+      "Bash(git restore:*)"
     ]
   }
 }
