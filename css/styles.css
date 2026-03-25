@@ -120,7 +120,7 @@ header {
 .header-content {
   display: flex;
   align-items: center;
-  height: 64px;
+  height: 48px;
   position: relative;
 }
 
@@ -133,7 +133,7 @@ header {
 }
 
 .logo img {
-  height: 32px;
+  height: 26px;
   width: auto;
 }
 
@@ -159,8 +159,8 @@ header {
   color: #000;
   text-decoration: none;
   font-weight: 800;
-  font-size: 1.0625rem;
-  padding: 34px 16px 22px;
+  font-size: 0.9375rem;
+  padding: 14px 16px 14px;
   transition: color 0.2s;
   white-space: nowrap;
 }
@@ -1107,17 +1107,17 @@ footer {
 
 @media (min-width: 768px) {
   .header-content {
-    height: 80px;
+    height: 56px;
   }
 
   .logo {
-    width: 220px;
+    width: 180px;
     flex-shrink: 0;
     max-width: none;
   }
 
   .logo img {
-    height: 48px;
+    height: 34px;
   }
 
   .desktop-nav {
