@@ -24,6 +24,7 @@
     .map-container {
       position: relative;
       height: 35vh;
+      height: 35dvh;
       background-color: #e5e7eb;
       display: flex;
       align-items: center;
@@ -403,6 +404,8 @@
     /* Search Panel */
     .search-panel {
       flex: 1;
+      min-height: 50vh;
+      min-height: 50dvh;
       background-color: #00205d;
       overflow: visible;
       display: flex;
@@ -1874,6 +1877,7 @@
         left: 0;
         width: 380px;
         height: 100%;
+        min-height: auto;
         z-index: 20;
         transition: transform 0.3s ease;
       }
@@ -2134,6 +2138,43 @@
       display: none;
     }
 
+    /* 모바일 기기별 반응형 높이 조정 */
+    /* 소형 모바일: iPhone SE, Galaxy S 시리즈 등 (높이 ~700px 이하) */
+    @media (max-width: 767px) and (max-height: 700px) {
+      .map-container {
+        height: 28vh;
+        height: 28dvh;
+      }
+      .search-panel {
+        min-height: 55vh;
+        min-height: 55dvh;
+      }
+    }
+
+    /* 중형 모바일: iPhone 14/15, Galaxy S24 등 (높이 701~850px) */
+    @media (max-width: 767px) and (min-height: 701px) and (max-height: 850px) {
+      .map-container {
+        height: 30vh;
+        height: 30dvh;
+      }
+      .search-panel {
+        min-height: 52vh;
+        min-height: 52dvh;
+      }
+    }
+
+    /* 대형 모바일: iPhone Pro Max, Galaxy Ultra 등 (높이 851px 이상) */
+    @media (max-width: 767px) and (min-height: 851px) {
+      .map-container {
+        height: 33vh;
+        height: 33dvh;
+      }
+      .search-panel {
+        min-height: 50vh;
+        min-height: 50dvh;
+      }
+    }
+
     @media (max-width: 767px) {
       /* 범례 토글 버튼 (모바일에서 표시) */
       .map-legend-toggle {
@@ -2199,6 +2240,35 @@
       .legend-circle {
         width: 10px;
         height: 10px;
+      }
+
+      /* 모바일 최소 폰트 사이즈 보정 */
+      .bottom-menu-tab span {
+        font-size: 11px;
+      }
+      .route-badge,
+      .type-badge,
+      .search-help-badge {
+        font-size: 11px;
+      }
+      .stop-label {
+        font-size: 10px;
+      }
+      .legend-speed {
+        font-size: 10px;
+      }
+      .time-badge {
+        font-size: 12px;
+      }
+      .route-direction {
+        font-size: 12px;
+      }
+      .route-title-close {
+        font-size: 12px;
+      }
+      .route-table-header div,
+      .route-table-row {
+        font-size: 13px;
       }
     }
   </style>
