@@ -876,7 +876,6 @@ header {
 /* Traffic Info Section */
 .traffic-section {
   padding: 1rem;
-  flex: 1;
 }
 
 .traffic-list {
@@ -1071,7 +1070,7 @@ footer {
 
   .bis-card,
   .its-card {
-    height: 350px;
+    height: 420px;
   }
 
   .card-content h2 {
@@ -1133,14 +1132,42 @@ footer {
 @media (min-width: 768px) {
   .main-grid {
     flex-direction: row;
+    align-items: stretch;
   }
 
   .main-left {
-    padding-top: 3.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bis-its-grid {
+    flex: none;
   }
 
   .main-right {
     width: 380px;
+  }
+
+  .search-header {
+    padding: 0.75rem;
+  }
+
+  .search-title-wrapper {
+    margin-bottom: 0.75rem;
+  }
+
+  .notice-section {
+    padding: 0.75rem;
+  }
+
+  .traffic-section {
+    padding: 0.75rem;
+  }
+
+  #congestion-content,
+  #incident-content {
+    height: 160px !important;
   }
 
   .small-cards-grid {

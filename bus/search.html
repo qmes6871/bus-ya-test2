@@ -509,8 +509,27 @@
 
     /* Search Filter */
     .search-filter {
+      position: relative;
       padding: 12px 16px;
       background-color: #d6e9f8;
+    }
+
+    .search-filter-close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 28px;
+      height: 28px;
+      border: none;
+      background: rgba(0,0,0,0.15);
+      border-radius: 50%;
+      font-size: 18px;
+      line-height: 1;
+      color: #374151;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .filter-buttons {
@@ -1825,6 +1844,10 @@
 
     /* Desktop Styles */
     @media (min-width: 1024px) {
+      .search-filter-close {
+        display: none;
+      }
+
       .bus-search-main {
         position: relative;
         flex-direction: row;
@@ -2676,6 +2699,7 @@
         <div id="bus-route-content" class="main-tab-content">
           <!-- Search Filter -->
           <div class="search-filter">
+            <button class="search-filter-close" aria-label="닫기">&times;</button>
             <div class="filter-buttons">
               <button class="filter-btn active" data-filter="노선번호">노선번호</button>
               <button class="filter-btn" data-filter="유형">유형</button>
@@ -3249,6 +3273,14 @@
         document.getElementById(targetTab + '-content').classList.remove('hidden');
       });
     });
+
+    // Search Filter Close Button
+    const filterCloseBtn = document.querySelector('.search-filter-close');
+    if (filterCloseBtn) {
+      filterCloseBtn.addEventListener('click', function() {
+        this.closest('.search-filter').style.display = 'none';
+      });
+    }
 
     // Filter Button Switching
     const filterBtns = document.querySelectorAll('.filter-btn');
