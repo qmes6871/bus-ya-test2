@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="경산시 교통소통정보 통계">
   <title>교통소통정보 통계 - 경산시 교통정보센터</title>
   <link rel="icon" href="../favicon.ico">
@@ -216,13 +216,98 @@
       align-items: center;
       margin-top: 0.5rem;
     }
+    .sub-page-main .stats-table-wrapper {
+      overflow-x: auto !important;
+    }
+    .sub-page-main table.stats-table {
+      width: auto !important;
+      min-width: 1200px !important;
+      table-layout: auto !important;
+    }
+    .sub-page-main .stats-table th,
+    .sub-page-main .stats-table td {
+      white-space: nowrap !important;
+      word-break: keep-all !important;
+      overflow: visible !important;
+      text-overflow: clip !important;
+      font-size: 0.75rem;
+      padding: 0.4rem 0.25rem;
+    }
     @media (max-width: 768px) {
       .stats-search {
-        flex-direction: column;
-        align-items: stretch;
+        display: grid;
+        grid-template-columns: min-content 1fr auto;
+        align-items: center;
+        gap: 0.5rem 0.2rem;
       }
       .stats-search .search-group {
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        min-width: 0;
+      }
+      .stats-search .search-group:nth-child(1) {
+        grid-column: 1 / 2;
+        grid-row: 1;
+      }
+      .stats-search .search-group:nth-child(2) {
+        grid-column: 2 / 4;
+        grid-row: 1;
+      }
+      .stats-search .search-group:nth-child(3) {
+        grid-column: 1 / 2;
+        grid-row: 2;
+        gap: 0.15rem;
+      }
+      .stats-search .search-group:nth-child(3) .search-label {
+        margin-right: 0.1rem;
+      }
+      .stats-search .search-group:nth-child(4) {
+        grid-column: 2 / 3;
+        grid-row: 2;
+        flex-wrap: nowrap;
+        gap: 0.15rem;
+        min-width: 0;
+      }
+      .stats-search .search-group:nth-child(4) .search-label {
+        margin-right: 0.15rem;
+        flex-shrink: 0;
+      }
+      .stats-search .search-group:nth-child(4) select {
+        min-width: 0;
+        padding: 0.4rem 0.1rem;
+        font-size: 0.75rem;
+      }
+      .stats-search .search-group:nth-child(4) select:nth-of-type(1) {
+        flex: 1.6 1 0;
+      }
+      .stats-search .search-group:nth-child(4) select:nth-of-type(2),
+      .stats-search .search-group:nth-child(4) select:nth-of-type(3) {
+        flex: 1 1 0;
+      }
+      .stats-search .search-group:nth-child(4) span {
+        flex-shrink: 0;
+      }
+      .stats-search .checkbox-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.15rem;
+        width: min-content;
+      }
+      .stats-search .checkbox-item {
+        white-space: nowrap;
+      }
+      .stats-search .search-group:nth-child(1) select,
+      .stats-search .search-group:nth-child(2) select {
+        width: auto;
+        min-width: 0;
+      }
+      .stats-search .search-btn {
+        grid-column: 3 / 4;
+        grid-row: 2;
+        height: 100%;
+      }
+      .stats-search select {
+        min-width: 0;
+        flex: 1;
       }
       .stats-header {
         flex-direction: column;
